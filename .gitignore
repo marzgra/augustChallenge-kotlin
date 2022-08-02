@@ -27,3 +27,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/AugustChallenge.iml
+/.idea/libraries/KotlinJavaRuntime.xml
+/.idea/modules.xml
