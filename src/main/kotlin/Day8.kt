@@ -47,10 +47,19 @@ fun String.isNiceFun(): Boolean {
     }
 
     var conditions = 0
-    if(noBadSubstrings) conditions++
-    if(hasThreeVowels) conditions++
-    if(hasDouble) conditions++
+    if (noBadSubstrings) conditions++
+    if (hasThreeVowels) conditions++
+    if (hasDouble) conditions++
 
     return conditions >= 2
 
+}
+
+fun String.isNiceFun2(): Boolean {
+    val noBadSubstrings: Boolean = !contains("bu") && !contains("ba") && !contains("be")
+    val hasThreeVowels = count { it == 'a' || it == 'e' || it == 'i' || it == 'o' || it == 'u' } > 3
+    val hasDouble = zipWithNext().any { it.first == it.second }
+
+    return listOf(noBadSubstrings, hasDouble, hasThreeVowels)
+        .count { it } >= 2 // counts number of element with TRUE value
 }
