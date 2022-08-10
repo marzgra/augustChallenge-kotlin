@@ -11,13 +11,16 @@ fun TaxiPark.findFakeDrivers(): Set<Driver> =
 /*
  * Task #2. Find all the clients who completed at least the given number of trips.
  */
-fun TaxiPark.findFaithfulPassengers(minTrips: Int): Set<Passenger> =
-    trips.flatMap { it.passengers }
+fun TaxiPark.findFaithfulPassengers(minTrips: Int): Set<Passenger> {
+    if (minTrips == 0) return allPassengers
+
+    return trips.flatMap { it.passengers }
         .groupingBy { it }
         .eachCount()
-        .filter { (_, number) -> number >= minTrips }
+        .filter { it.value >= minTrips }
         .keys
         .toSet()
+}
 
 /*
  * Task #3. Find all the passengers, who were taken by a given driver more than once.
